@@ -51,4 +51,14 @@ export const AppStackNavigator = createStackNavigator({
             title: `This is Page4`
         }
     },
+}, {
+    // 这里可以分别为路由提供配置，以及对视图样式进行配置
+    mode: 'modal', // modal: 上下切换; card: 左右切换
+    headerMode: 'screen', // 导航栏的显示模式. float:无透明，screen:有渐变透明，none:隐藏
+    onTransitionStart: () => {
+        console.log("切换开始")
+    }, // 页面切换开始时的回调函数 (我们可以在这里注册一些通知，告知我们切面切换的状态，方便后面处理页面切换事件)
+    onTransitionEnd: () => {
+        console.log("切换结束")
+    }//页面切换结束时的回调函数
 })

@@ -14,7 +14,7 @@ type Props = {};
 export default class HomePage extends Component<Props> {
     static navigationOptions = {
         title: 'Home',
-        headerBackTitle: '返回哈哈' // 设置返回此页面的返回按钮文案，有长度限制
+        headerBackTitle: '返回' // 设置返回此页面的返回按钮文案，有长度限制
     }
     render() {
         const {navigation} = this.props

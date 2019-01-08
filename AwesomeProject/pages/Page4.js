@@ -10,7 +10,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 
-type Props = {};
+type
+Props = {};
 export default class Page4 extends Component<Props> {
     render() {
         return (
