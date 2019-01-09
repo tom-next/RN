@@ -1,31 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import {
+    View,
+    Text,
+    Button,
+    StyleSheet
+} from 'react-native';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+export default class Login extends React.Component {
+    //也可在这里定义每个页面的导航属性，这里的定义会覆盖掉别处的定义
+    // static navigationOptions = {
+    //     title: 'Page1',
+    // };
 
-
-type Props = {};
-export default class Login extends Component<Props> {
     render() {
-        return (
-            <View style={styles.container}>
-                <Text style={styles.welcome}>Welcome to Login</Text>
-            </View>
-        );
+        const {navigation} = this.props;
+        return <View style={{flex: 1, backgroundColor: "gray",}}>
+            <Text style={styles.text}>登录页</Text>
+            <Button
+                title="Login"
+                onPress={() => {
+                    navigation.navigate('App');
+                }}
+            />
+        </View>
     }
 }
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+    text: {
+        fontSize: 20,
+        color: 'white'
     }
 });

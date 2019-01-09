@@ -1,16 +1,54 @@
-import {createStackNavigator} from 'react-navigation'
+import {createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView} from 'react-navigation'
 import {createBottomTabNavigator, createMaterialTopTabNavigator} from 'react-navigation-tabs'
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Button, Platform} from 'react-native'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {Button, Platform, ScrollView} from 'react-native'
 import Page1 from '../pages/Page1'
 import Page2 from '../pages/Page2'
 import Page3 from '../pages/Page3'
 import Page4 from '../pages/Page4'
-// import Page5 from '../pages/Page5'
+import Page5 from '../pages/Page5'
 import HomePage from '../pages/HomePage'
 
-export const MaterialTopTabNavigator = createMaterialTopTabNavigator({//在这里配置页面的路由
+const DrawerNav = createDrawerNavigator({
+    Page4: {
+        screen: Page4,
+        navigationOptions: {
+            drawerLabel: 'Page4',
+            drawerIcon: ({tintColor}) => (
+                <MaterialIcons name="drafts" size={24} style={{color: tintColor}}/>
+            ),
+        }
+    },
+    Page5: {
+        screen: Page5,
+        navigationOptions: {
+            drawerLabel: 'Page5',
+            drawerIcon: ({tintColor}) => (
+                <MaterialIcons
+                    name="move-to-inbox"
+                    size={24}
+                    style={{color: tintColor}}
+                />
+            ),
+        }
+    },
+}, {
+    initialRouteName: 'Page4',
+    contentOptions: {
+        activeTintColor: '#e91e63',
+    },
+    contentComponent: (props) => (
+        <ScrollView style={{backgroundColor: '#987656', flex: 1}}>
+            <SafeAreaView forceInset={{top: 'always', horizontal: 'never'}}>
+                <DrawerItems {...props} />
+            </SafeAreaView>
+        </ScrollView>
+    )
+})
+
+export const MaterialTopTabNavigator =  createMaterialTopTabNavigator({//在这里配置页面的路由
         Page1: {
             screen: Page1,
             navigationOptions: {
@@ -50,9 +88,7 @@ export const MaterialTopTabNavigator = createMaterialTopTabNavigator({//在这�
                 ),
             }
         },
-    },
-    {
-        tabBarOptions: {
+    }, {tabBarOptions: {
             tabStyle: {
                 minWidth: 50
             },
@@ -72,9 +108,7 @@ export const MaterialTopTabNavigator = createMaterialTopTabNavigator({//在这�
                 marginTop: 6,
                 marginBottom: 6,
             },//文字的样式
-        },
-    }
-)
+        },})
 
 export const BottomTabNavigator = createBottomTabNavigator({//在这里配置页面的路由
     Page1: {
@@ -179,6 +213,12 @@ export const AppStackNavigator = createStackNavigator({
             title: `This is MaterialTopTabNavigator`
         }
     },
+    DrawerNav: {
+        screen: DrawerNav,
+        navigationOptions: {//在这里定义每个页面的导航属性，静态配置
+            title: "This is DrawerNavigator.",
+        }
+    }
 }, {
     // 这里可以分别为路由提供配置，以及对视图样式进行配置
     mode: 'modal', // modal: 上下切换; card: 左右切换
